@@ -15,7 +15,7 @@ endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
+option(USE_SODIUM "On or off" ON)
 if(USE_INTERNAL)
 	file(GLOB SRC_FILES src/*.c src/*.h)
 	add_library(qed25519  qed25519.cpp include/crypto/qed25519.hpp ${SRC_FILES})
