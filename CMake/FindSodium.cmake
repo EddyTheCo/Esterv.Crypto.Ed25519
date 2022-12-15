@@ -78,13 +78,13 @@ if (UNIX)
     endif()
 
     find_path(sodium_INCLUDE_DIR sodium.h
-        HINTS ${${XPREFIX}_INCLUDE_DIRS}
+        HINTS ${${XPREFIX}_INCLUDE_DIRS} NO_CMAKE_FIND_ROOT_PATH
     )
     find_library(sodium_LIBRARY_DEBUG NAMES ${${XPREFIX}_LIBRARIES}
-        HINTS ${${XPREFIX}_LIBRARY_DIRS}
+        HINTS ${${XPREFIX}_LIBRARY_DIRS} NO_CMAKE_FIND_ROOT_PATH
     )
     find_library(sodium_LIBRARY_RELEASE NAMES ${${XPREFIX}_LIBRARIES}
-        HINTS ${${XPREFIX}_LIBRARY_DIRS}
+        HINTS ${${XPREFIX}_LIBRARY_DIRS} NO_CMAKE_FIND_ROOT_PATH
     )
 
 

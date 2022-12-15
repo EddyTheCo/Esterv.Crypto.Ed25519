@@ -15,7 +15,9 @@ endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-option(USE_SODIUM "On or off" ON)
+option(USE_INTERNAL "On or off" OFF)
+include(CMakeDependentOption)
+cmake_dependent_option(USE_SODIUM "Use Sodium" ON "NOT USE_INTERNAL" OFF)
 if(EMSCRIPTEN)
 	option(sodium_USE_STATIC_LIBS "On or off" ON)
 endif()
@@ -34,7 +36,6 @@ endif(USE_SODIUM)
 
 find_package(Qt6 REQUIRED COMPONENTS Core)
 target_link_libraries(qed25519 PUBLIC  Qt6::Core)
-
 
 
 target_include_directories(qed25519 PUBLIC  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
