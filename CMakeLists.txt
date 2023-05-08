@@ -15,7 +15,7 @@ endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-option(USE_INTERNAL "On or off" OFF)
+option(USE_INTERNAL "On or off" ON)
 include(CMakeDependentOption)
 cmake_dependent_option(USE_SODIUM "Use Sodium" ON "NOT USE_INTERNAL" OFF)
 if(EMSCRIPTEN)

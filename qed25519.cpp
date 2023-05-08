@@ -38,8 +38,7 @@ namespace qcrypto
 			ed25519_sign(reinterpret_cast<unsigned char*> (signature.data()),
 					reinterpret_cast<const unsigned char*>(message.data()),
 					(size_t)message.size(),
-					reinterpret_cast<const unsigned char*>(key_pair.first.data()),
-					reinterpret_cast<const unsigned char*>(key_pair.second.data()));
+                    reinterpret_cast<const unsigned char*>(key_pair.second.data()));
 #endif
 #ifdef USE_SODIUM
 			unsigned long long sign_len = 64;
