@@ -37,7 +37,7 @@ if (Qt6_FOUND)
 qt_standard_project_setup()
 endif(Qt6_FOUND)
 
-file(GLOB SRC_FILES src/*.c src/*.h)
+file(GLOB SRC_FILES src/*.c src/*.cpp src/*.h)
 add_library(qed25519  include/crypto/qed25519.hpp ${SRC_FILES})
 
 if (Qt6_FOUND)
