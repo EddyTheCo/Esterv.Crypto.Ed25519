@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 include(local_conf.cmake OPTIONAL)
-include(cmake/VersionFromGit.cmake)
 
+include(FetchContent)
+FetchContent_Declare(
+	ccommon
+	GIT_REPOSITORY https://github.com/EddyTheCo/Common.git
+	GIT_TAG main
+	)
+FetchContent_MakeAvailable(ccommon)
 version_from_git(
 	LOG       OFF
   TIMESTAMP "%Y%m%d%H%M%S"
@@ -25,14 +31,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 COMPONENTS Core)
+
+if (Qt6_FOUND)
 qt_standard_project_setup()
+endif(Qt6_FOUND)
 
 file(GLOB SRC_FILES src/*.c src/*.h)
 add_library(qed25519  qed25519.cpp include/crypto/qed25519.hpp ${SRC_FILES})
 
+if (Qt6_FOUND)
 target_link_libraries(qed25519 PUBLIC  Qt6::Core)
-
+endif(Qt6_FOUND)
 
 target_include_directories(qed25519 PUBLIC  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     "$<INSTALL_INTERFACE:include>")
@@ -77,4 +87,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif()
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
     add_subdirectory(tests)
+endif()
+if(BUILD_DOCS)
+	get_target_property(build_docs cmake_build_docs SOURCES)
+	include(${build_docs})
 endif()

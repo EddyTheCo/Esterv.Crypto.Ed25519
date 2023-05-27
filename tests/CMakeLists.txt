@@ -1,7 +1,3 @@
-cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
-
-project(testing VERSION 0.1 DESCRIPTION "diferent tests for the library" LANGUAGES CXX)
-
 foreach(app  rfc8032 tip14)
 add_executable(${app} ${app}.cpp)
 target_link_libraries(${app} PRIVATE qed25519)
