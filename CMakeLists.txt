@@ -38,7 +38,7 @@ qt_standard_project_setup()
 endif(Qt6_FOUND)
 
 file(GLOB SRC_FILES src/*.c src/*.h)
-add_library(qed25519  qed25519.cpp include/crypto/qed25519.hpp ${SRC_FILES})
+add_library(qed25519  include/crypto/qed25519.hpp ${SRC_FILES})
 
 if (Qt6_FOUND)
 target_link_libraries(qed25519 PUBLIC  Qt6::Core)
