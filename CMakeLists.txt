@@ -12,7 +12,7 @@ version_from_git(
 	LOG       OFF
   TIMESTAMP "%Y%m%d%H%M%S"
 )
-project(Qted25519 VERSION ${VERSION} DESCRIPTION "Qt interface for ed25519 " LANGUAGES C CXX)
+project(Qted25519 VERSION ${VERSION} DESCRIPTION "Qt interface for ed25519 " LANGUAGES  CXX C)
 
 
 set(default_build_type "Release")
