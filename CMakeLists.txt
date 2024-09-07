@@ -6,14 +6,14 @@ include(FetchContent)
 FetchContent_Declare(
   ccommon
   GIT_REPOSITORY https://github.com/EddyTheCo/Common.git
-  GIT_TAG v0.4.0)
+  GIT_TAG v0.4.1)
 FetchContent_MakeAvailable(ccommon)
 version_from_git(LOG OFF TIMESTAMP "%Y%m%d%H%M%S")
 
 project(
-  Qted25519
+	EstervEd25519
   VERSION ${VERSION}
-  DESCRIPTION "Interface for ed25519 "
+  DESCRIPTION "Interface for ed25519"
   LANGUAGES CXX C)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -29,27 +29,27 @@ if(Qt6_FOUND)
   qt_standard_project_setup()
 
   file(GLOB SRC_FILES src/*.c src/*.cpp src/*.h)
-  add_library(qed25519 ${SRC_FILES})
-  add_library(${PROJECT_NAME}::qed25519 ALIAS qed25519)
-  set_target_properties(qed25519 PROPERTIES VERSION ${VERSION} SOVERSION
+  add_library(ed25519 ${SRC_FILES})
+  add_library(Esterv::ed25519 ALIAS ed25519)
+  set_target_properties(ed25519 PROPERTIES VERSION ${VERSION} SOVERSION
                                                                ${VERSION_MAJOR})
 
-  target_link_libraries(qed25519 PUBLIC Qt6::Core)
+  target_link_libraries(ed25519 PUBLIC Qt6::Core)
 
   target_include_directories(
-    qed25519 PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    ed25519 PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/Esterv/>")
 
   install(
-    TARGETS qed25519
+    TARGETS ed25519
     EXPORT ${PROJECT_NAME}-config
     DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    COMPONENT ed25519
-    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT ed25519)
+    COMPONENT ${PROJECT_NAME} 
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT ${PROJECT_NAME})
   install(
     DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Esterv
-    COMPONENT ${PROJECT_NAME})
+    COMPONENT ${PROJECT_NAME}-dev)
 
   build_exports()
   if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
