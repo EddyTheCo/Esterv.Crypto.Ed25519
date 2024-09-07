@@ -58,8 +58,8 @@
     {
       "name": "default-develop",
       "configurePreset": "default-develop",
-      "output": {"outputOnFailure": true},
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "output": {"outputOnFailure": true, "verbosity": "extra"},
+      "execution": {"noTestsAction": "error"}
     }
   ],
   "workflowPresets": [

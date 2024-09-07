@@ -14,19 +14,14 @@ jobs:
       matrix:
         os: [ubuntu-latest,macos-latest,windows-latest]
 
-    uses: EddyTheCo/Common/.github/workflows/build-test-install.yml@v0.4.1
+    uses: EddyTheCo/Common/.github/workflows/build-test-install.yml@ndk26
     with:
       os: ${{ matrix.os }}
-      qtVersion: '6.8.0'
-      cmakeArgs: "-DCPACK_PACKAGE_CONTACT=estervtech@gmail.com -DREPO_URL=https://eddytheco.github.io/Esterv.Crypto.Ed25519 -DCPACK_PACKAGE_VENDOR=estervtech" 
+      qtVersion: '6.7.0'
   
-  build_doxygen:
-    if: startsWith(github.ref, 'refs/tags/v')
-    uses: EddyTheCo/Common/.github/workflows/build-docs.yml@v0.4.1
-
   release:
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: [build_test_package, build_doxygen]
+    needs: build_test_package
     runs-on: ubuntu-latest
 
     permissions:
@@ -63,9 +58,6 @@ jobs:
         run: |
           cmake -E make_directory ${{runner.temp}}/page-packages
           cmake -E tar c ${{runner.temp}}/page-packages/github-pages.tar -- .
-
-      - name: Generate Changelog
-        run:  git log $(git describe --tags --abbrev=0)^..HEAD --pretty=format:"* %h - %s (%an, %ar)" > ${{ github.workspace }}-CHANGELOG.md
 
       - name: Releases 
         uses: softprops/action-gh-release@v2
