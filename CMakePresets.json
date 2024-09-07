@@ -16,7 +16,6 @@
       "name": "default-release-shared",
       "displayName": "Default Release Shared",
       "description": "Release Shared library using Ninja generator",
-      "generator": "Ninja",
       "inherits": "default-release",
       "cacheVariables": {
 	"BUILD_SHARED_LIBS":"ON"
@@ -26,7 +25,6 @@
       "name": "default-develop",
       "displayName": "Default Config for development",
       "description": "Debug build type using Ninja generator",
-      "generator": "Ninja",
       "inherits": "default-release",
       "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
@@ -124,9 +122,9 @@
   ],
   "packagePresets": [
     {
-      "name": "default-release",
+      "name": "default-release-shared",
       "description": "Release runtime components",
-      "configurePreset": "default-release",
+      "configurePreset": "default-release-shared",
       "generators": [
         "IFW","TGZ"
       ],
@@ -139,19 +137,10 @@
       "packageDirectory": "packages"
     },
     {
-      "name": "default-release-shared",
-      "description": "Release runtime components(shared libraries)",
-      "inherits":"default-release",
-      "configurePreset": "default-release-shared"
-    },
-    {
       "name": "default-develop",
       "description": "Release development components",
       "configurePreset": "default-develop",
-      "inherits":"default-release",
-      "generators": [
-        "IFW","TGZ"
-      ],
+      "inherits":"default-release-shared",
       "variables": {
 	      "CPACK_COMPONENTS_ALL": "EstervEd25519;EstervEd25519-dev",
 	      "CPACK_COMPONENTS_GROUPING":"ALL_COMPONENTS_IN_ONE"
