@@ -45,13 +45,13 @@ jobs:
 
       - name: Move repositories to webpage
         run: |
-          mv artifacts/docs/html github-pages
-          rm -rf artifacts/docs
+          mv artifacts/doc/html github-pages
+          rm -rf artifacts/doc
           mkdir github-pages/packages/ ${{runner.temp}}/platforms/
-          mv artifacts/*/_CPack_Packages/* ${{runner.temp}}/platforms/
+          mv artifacts/*/release/packages/_CPack_Packages/* ${{runner.temp}}/platforms/
           for i in ${{runner.temp}}/platforms/*; do mv $i/IFW/*/repository/* $i/; rm -rf $i/IFW $i/TGZ; done;
           mv ${{runner.temp}}/platforms/* github-pages/packages/ 
-          rm -rf artifacts/*/_CPack_Packages
+          rm -rf artifacts/*/release/packages/_CPack_Packages
 
       - name: Package github-page
         working-directory: ${{ github.workspace }}/github-pages/
@@ -62,8 +62,8 @@ jobs:
       - name: Releases 
         uses: softprops/action-gh-release@v2
         with:
-          files: ./artifacts/*/*   
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
+          files: ./artifacts/*/*/*   
+          body_path: ./artifacts/CHANGELOG.md
 
       - uses: actions/upload-artifact@v4
         with:
