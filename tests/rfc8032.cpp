@@ -1,4 +1,4 @@
-#include "crypto/qed25519.hpp"
+#include "esterv/crypto/ed25519.hpp"
 #include <iostream>
 #undef NDEBUG
 #include <QDebug>
@@ -7,7 +7,7 @@
  *https://www.rfc-editor.org/rfc/rfc8032#page-24
  *
  */
-using namespace qcrypto::qed25519;
+using namespace Esterv::Crypto::Ed25519;
 
 int main(int argc, char **argv)
 {

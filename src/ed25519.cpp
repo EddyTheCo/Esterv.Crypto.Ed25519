@@ -1,9 +1,7 @@
-#include "crypto/qed25519.hpp"
+#include "esterv/crypto/ed25519.hpp"
 #include "ed25519.h"
 
-namespace qcrypto
-{
-namespace qed25519
+namespace Esterv::Crypto::Ed25519
 {
 std::pair<QByteArray, QByteArray> create_keypair(const QByteArray &seed)
 {
@@ -33,4 +31,3 @@ bool verify(const QByteArray &signature, const QByteArray &message, const QByteA
                           reinterpret_cast<const unsigned char *>(public_key.data()));
 }
 } // namespace qed25519
-} // namespace qcrypto

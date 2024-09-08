@@ -1,51 +1,37 @@
-# Ed25519
+# Esterv.Crypto.Ed25519
 
 [TOC]
 
 This repo implements a library for elliptic curve signature scheme Edwards-curve Digital Signature Algorithm (EdDSA).
 The source code is taken from [this repo](https://github.com/orlp/ed25519)
 
-## Installing the library 
-
-### From source code
-```
-git clone https://github.com/EddyTheCo/Qed25519.git 
-
-mkdir build
-cd build
-qt-cmake -G Ninja -DCMAKE_INSTALL_PREFIX=installDir -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DBUILD_DOCS=OFF -DUSE_THREADS=ON ../Qed25519
-
-cmake --build . 
-
-cmake --install . 
-```
-where `installDir` is the installation path.
-One can choose to build or not the tests and the documentation with the `BUILD_TESTING` and `BUILD_DOCS` variables.
-
-### From GitHub releases
-Download the releases from this repo. 
+## Configure, build, test, package ...
+ 
+The project uses [CMake presets](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html) as a way to share CMake configurations.
+Refer to [cmake](https://cmake.org/cmake/help/latest/manual/cmake.1.html), [ctest](https://cmake.org/cmake/help/latest/manual/ctest.1.html) and [cpack](https://cmake.org/cmake/help/latest/manual/cpack.1.html) documentation for more information on the use of presets.
 
 ## Adding the libraries to your CMake project 
 
 ```CMake
 include(FetchContent)
 FetchContent_Declare(
-	Qted25519	
-	GIT_REPOSITORY https://github.com/EddyTheCo/Qed25519.git
-	GIT_TAG vMAJOR.MINOR.PATCH 
-	FIND_PACKAGE_ARGS MAJOR.MINOR CONFIG  
+	EstervEd25519
+	GIT_REPOSITORY https://github.com/EddyTheCo/Esterv.Crypto.Ed25519.git
+	GIT_TAG vMAJOR.MINOR.PATCH
+	FIND_PACKAGE_ARGS MAJOR.MINOR CONFIG
 	)
-FetchContent_MakeAvailable(Qted25519)
-target_link_libraries(<target> <PRIVATE|PUBLIC|INTERFACE> Qted25519::qed25519)
+FetchContent_MakeAvailable(EstervEd25519)
+target_link_libraries(<target> <PRIVATE|PUBLIC|INTERFACE> Esterv::ed25519)
 ```
 
 ## API reference
 
-You can read the [API reference](https://eddytheco.github.io/Qed25519/) here, or generate it yourself like
+You can read the [API reference](https://eddytheco.github.io/Esterv.Crypto.Ed25519/) here, or generate it yourself like
+
 ```
-cmake -DBUILD_DOCS=ON ../
-cmake --build . --target doxygen_docs
+cmake --workflow --preset default-documentation
 ```
+
 
 ## Contributing
 

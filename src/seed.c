@@ -3,8 +3,10 @@
 #ifndef ED25519_NO_SEED
 
 #ifdef _WIN32
-#include <wincrypt.h>
+// clang-format off
 #include <windows.h>
+#include <wincrypt.h>
+// clang-format on
 #else
 #include <stdio.h>
 #endif

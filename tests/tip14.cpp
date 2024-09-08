@@ -1,4 +1,4 @@
-#include "crypto/qed25519.hpp"
+#include "esterv/crypto/ed25519.hpp"
 #include <iostream>
 #undef NDEBUG
 #include <QDebug>
@@ -7,7 +7,7 @@
  *https://github.com/iotaledger/tips/blob/main/tips/TIP-0014/tip-0014.md
  *
  */
-using namespace qcrypto::qed25519;
+using namespace Esterv::Crypto::Ed25519;
 
 int main(int argc, char **argv)
 {
