@@ -11,7 +11,7 @@ FetchContent_MakeAvailable(ccommon)
 version_from_git(LOG OFF TIMESTAMP "%Y%m%d%H%M%S")
 
 project(
-	EstervEd25519
+  EstervEd25519
   VERSION ${VERSION}
   DESCRIPTION "Interface for ed25519"
   LANGUAGES CXX C)
@@ -32,19 +32,19 @@ if(Qt6_FOUND)
   add_library(ed25519 ${SRC_FILES})
   add_library(Esterv::ed25519 ALIAS ed25519)
   set_target_properties(ed25519 PROPERTIES VERSION ${VERSION} SOVERSION
-                                                               ${VERSION_MAJOR})
+                                                              ${VERSION_MAJOR})
 
   target_link_libraries(ed25519 PUBLIC Qt6::Core)
 
   target_include_directories(
     ed25519 PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
+                   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 
   install(
     TARGETS ed25519
     EXPORT ${PROJECT_NAME}-config
     DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    COMPONENT ${PROJECT_NAME} 
+    COMPONENT ${PROJECT_NAME}
     RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT ${PROJECT_NAME})
   install(
     DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/

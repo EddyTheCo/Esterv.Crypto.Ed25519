@@ -9,7 +9,7 @@
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-	"REPO_URL":"https://eddytheco.github.io/Esterv.Crypto.Ed25519"
+        "REPO_URL": "https://eddytheco.github.io/Esterv.Crypto.Ed25519"
       }
     },
     {
@@ -18,8 +18,8 @@
       "description": "Release build type using Ninja generator, add tests and docs",
       "inherits": "default-release",
       "cacheVariables": {
-	"BUILD_TESTING": "ON",
-	"BUILD_DOCS":"ON"
+        "BUILD_TESTING": "ON",
+        "BUILD_DOCS": "ON"
       }
     },
     {
@@ -49,21 +49,28 @@
     {
       "name": "default-documentation",
       "configurePreset": "default-develop",
-      "targets":"doxygen_docs"
-
+      "targets": "doxygen_docs"
     }
   ],
   "testPresets": [
     {
       "name": "default-develop",
       "configurePreset": "default-develop",
-      "execution": {"noTestsAction": "ignore"}
+      "execution": {
+        "noTestsAction": "ignore"
+      }
     },
     {
       "name": "default-develop-debug",
       "configurePreset": "default-develop-debug",
-      "output": {"outputOnFailure": true, "verbosity": "extra", "debug": true},
-      "execution": {"noTestsAction": "error"}
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      },
+      "execution": {
+        "noTestsAction": "error"
+      }
     }
   ],
   "workflowPresets": [
@@ -134,26 +141,26 @@
       "description": "Release runtime components",
       "configurePreset": "default-release",
       "generators": [
-        "IFW","TGZ"
+        "IFW",
+        "TGZ"
       ],
       "variables": {
-	      "CPACK_ARCHIVE_COMPONENT_INSTALL":"ON",
-	      "CPACK_COMPONENTS_ALL": "EstervEd25519",
-	      "CPACK_PACKAGE_CONTACT":"estervtech@gmail.com",
-	      "CPACK_PACKAGE_VENDOR":"estervtech"
+        "CPACK_ARCHIVE_COMPONENT_INSTALL": "ON",
+        "CPACK_COMPONENTS_ALL": "EstervEd25519",
+        "CPACK_PACKAGE_CONTACT": "estervtech@gmail.com",
+        "CPACK_PACKAGE_VENDOR": "estervtech"
       },
       "packageDirectory": "packages"
     },
     {
       "name": "default-develop",
       "description": "Release development components",
-      "inherits":"default-release",
+      "inherits": "default-release",
       "configurePreset": "default-develop",
       "variables": {
-	      "CPACK_COMPONENTS_ALL": "EstervEd25519;EstervEd25519-dev",
-	      "CPACK_COMPONENTS_GROUPING":"ALL_COMPONENTS_IN_ONE"
+        "CPACK_COMPONENTS_ALL": "EstervEd25519;EstervEd25519-dev",
+        "CPACK_COMPONENTS_GROUPING": "ALL_COMPONENTS_IN_ONE"
       }
     }
   ]
-
 }
